@@ -54,15 +54,6 @@ stip_survey = stip_survey.iloc[1:].reset_index(drop=True)
 - Dynamic skills and capabilities mapping
 - Policy instrument clustering
 
-## 🎯 Key Findings
-
-The analysis reveals:
-- **Portugal** leads with 360 policy initiatives
-- **Germany** is most active in financial support to business R&D (98 initiatives)
-- **Governance themes** show strong co-occurrence patterns
-- **Non-financial support** instruments are diverse across countries
-
-
 ## 📄 License
 
 This project is for educational and research purposes. The OECD STIP data is publicly available through the OECD website.
