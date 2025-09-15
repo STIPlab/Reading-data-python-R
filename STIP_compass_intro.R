@@ -22,7 +22,21 @@ stip_survey <- stip_survey %>%
     mutate(across(starts_with(c("TH","TG")), ~ suppressWarnings(as.numeric(.x))))
 
 #A glimpse into the codebook:
-head(codebook)
+print("First 5 rows of the codebook:")
+print(head(codebook, 5))
+
+# Specifically look for the new 2025 themes (TH110, TH111, TH112)
+new_themes <- c("TH110", "TH111", "TH112")
+print("\nNew 2025 themes:")
+for(theme in new_themes) {
+  if(theme %in% codebook$Code) {
+    theme_info <- codebook[codebook$Code == theme, ]
+    cat(theme, ":", theme_info$Meaning, "\n")
+  } else {
+    cat(theme, ": Not found in dataset\n")
+  }
+}
+
 
 stip_survey_Unique <- stip_survey[!duplicated(InitiativeID)]
 
