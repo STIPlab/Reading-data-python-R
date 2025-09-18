@@ -1,11 +1,13 @@
 if (!requireNamespace("pacman", quietly = TRUE)) {
   install.packages("pacman") # pacman is a package for convenient installing and/or loading of packages and makes it easy for users of this tutorial to run the code from this tutorial on their own machine
 }
-pacman::p_load(data.table, dplyr, ggplot2, stringr, tidyr, DT, readr)
+pacman::p_load(data.table, dplyr, ggplot2, stringr, tidyr, DT, readr, readxl)
 
-# Directly read the dataset from the URL using fread
-stip_url <- "https://stip.oecd.org/assets/downloads/STIP_Survey.csv"
-stip_survey <- data.table::fread(stip_url, showProgress = FALSE, fill = TRUE, quote = "")
+# Only download and read the remote Excel
+remote_xlsx <- "https://stip.oecd.org/assets/downloads/STIP_Survey.xlsx"
+tmp_xlsx <- tempfile(fileext = ".xlsx")
+utils::download.file(remote_xlsx, tmp_xlsx, mode = "wb", quiet = TRUE)
+stip_survey <- readxl::read_excel(tmp_xlsx)
 head(stip_survey)
 #To facilitate working with the dataset, we generate a separate 'Codebook' dataframe listing the column names and the detail given in the first row, for variables on themes and direct beneficiaries
 codebook <- cbind(names(stip_survey), as.character(stip_survey[1,])) %>%
@@ -38,7 +40,7 @@ for(theme in new_themes) {
 }
 
 
-stip_survey_Unique <- stip_survey[!duplicated(InitiativeID)]
+stip_survey_Unique <- dplyr::distinct(stip_survey, InitiativeID, .keep_all = TRUE)
 
 financing_innovation <- stip_survey %>%
   dplyr::select(!starts_with("F")) %>% #just removing columns not needed for present analysis to make the dataset easier to handle
