@@ -82,6 +82,7 @@ p2 <- TH32_instruments %>%
   coord_flip() +
   labs(title = "Top 5 instrument types (TH32: Non-financial support to business R&D and innovation)",
        x = "Instrument type", y = "Count") +
-  theme_minimal(base_size = 12)
+  theme_minimal(base_size = 10)
 print(p2)
+
 
