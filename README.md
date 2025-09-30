@@ -23,27 +23,6 @@
    - Open `Story_intro.ipynb`
    - Run all cells
 
-#### Method 2: Run in Google Colab (Easy Alternative)
-
-If installing and setting up VS Code is difficult, we recommend using Google Colab:
-
-1. **Access Google Colab**
-   - Go to https://colab.research.google.com/
-   - Sign in with your Google account
-
-2. **Upload the Notebook**
-   - Click "File" → "Upload notebook"
-   - Upload `Story_intro.ipynb`
-   - Or create a new notebook and copy & paste the code
-
-3. **Install Packages**
-   - Run the following in the first cell:
-     ```python
-     !pip install pandas numpy matplotlib seaborn networkx
-     ```
-
-**Note**: Google Colab requires internet connection and some features may be limited.
-
 #### Method 3: Run R Code
 
 For users who prefer R over Python:
@@ -62,38 +41,6 @@ For users who prefer R over Python:
    - `data.table`, `dplyr`, `ggplot2`, `stringr`, `tidyr`, `DT`, `readr`
 
 **Note**: The R version provides similar analysis to the Python Jupyter notebook but with R-specific data manipulation and visualization tools.
-
-## 📈 Analysis Components
-
-### 1. Data Loading and Preprocessing
-```python
-# Load data from OECD STIP Survey
-url = "https://stip.oecd.org/assets/downloads/STIP_Survey.csv"
-stip_survey = pd.read_csv(url, sep="|")
-
-# Remove description row and prepare data
-stip_survey = stip_survey.iloc[1:].reset_index(drop=True)
-```
-
-### 2. Governance Theme Analysis
-- Co-occurrence heatmap of governance policy themes
-- Strategic autonomy and dynamic capabilities analysis
-- STI planning and evaluation assessment
-
-### 3. Innovation Financing Analysis
-- Financial support to business R&D and innovation
-- Non-financial support instruments
-- Foreign direct investment and access to finance
-
-### 4. Cross-country Comparisons
-- Policy initiative counts by country
-- Top countries in specific policy areas
-- Geographic distribution of instruments
-
-### 5. Network Analysis
-- Country-instrument relationship networks
-- Dynamic skills and capabilities mapping
-- Policy instrument clustering
 
 ## 📄 License
 
