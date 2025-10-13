@@ -27,20 +27,13 @@ stip_survey <- stip_survey %>%
 print("First 5 rows of the codebook:")
 print(head(codebook, 5))
 
-# Specifically look for the new 2025 themes (TH110, TH111, TH112)
-new_themes <- c("TH110", "TH111", "TH112")
-print("\nNew 2025 themes:")
-for(theme in new_themes) {
-  if(theme %in% codebook$Code) {
-    theme_info <- codebook[codebook$Code == theme, ]
-    cat(theme, ":", theme_info$Meaning, "\n")
-  } else {
-    cat(theme, ": Not found in dataset\n")
-  }
-}
-
 
 stip_survey_Unique <- dplyr::distinct(stip_survey, InitiativeID, .keep_all = TRUE)
+# Remove duplicates of policy initiatives
+print(paste("Original data rows:", nrow(stip_survey)))
+print(paste("Unique initiatives:", nrow(stip_survey_Unique)))
+head(stip_survey_Unique)
+
 
 financing_innovation <- stip_survey %>%
   dplyr::select(!starts_with("F")) %>% #just removing columns not needed for present analysis to make the dataset easier to handle
